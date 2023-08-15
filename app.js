@@ -2,11 +2,15 @@ const express = require('express');
 const { sequelize } = require('./database');
 const globalStatController = require('./controller/global_stat.controller');
 const keyValueController = require('./controller/key_value.controller');
+// cors 적용
+const cors = require('cors');
 
 const launchServer = async () => {
   const app = express();
   app.use(express.json({ strict: false }));
   app.use(express.urlencoded({ extended: true }));
+  // cors 적용
+  app.use(cors());
 
   app.get('/', (req, res) => {
     res.json({ message: 'Hello Corona' });
